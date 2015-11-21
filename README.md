@@ -1,15 +1,35 @@
-<img src="http://bitcore.io/css/images/bitcore-p2p.svg" alt="bitcore payment protocol" height="35" width="102">
-
 Bitcore P2P
 =======
 
-[![NPM Package](https://img.shields.io/npm/v/bitcore-p2p.svg?style=flat-square)](https://www.npmjs.org/package/bitcore-p2p)
-[![Build Status](https://img.shields.io/travis/bitpay/bitcore-p2p.svg?branch=master&style=flat-square)](https://travis-ci.org/bitpay/bitcore-p2p)
-[![Coverage Status](https://img.shields.io/coveralls/bitpay/bitcore-p2p.svg?style=flat-square)](https://coveralls.io/r/bitpay/bitcore-p2p?branch=master)
+This fork of `bitcore-p2p` is build to be browserfiable and usable in cordova mobile applications. The changes allow for the replacement of node's `Net` with the cordova plugins: `cordova-plugin-chrome-apps-sockets-tcp` and `cordova-plugin-chrome-apps-sockets-tcpserver`.
 
-`bitcore-p2p` adds [Bitcoin protocol](https://en.bitcoin.it/wiki/Protocol_documentation) support for Bitcore.
+For more information check out the main repos:
+[bitcore-lib](https://github.com/bitpay/bitcore-lib)
+[bitcore-p2p](https://github.com/bitpay/bitcore-p2p)
+[bitcore-mnemonic](https://github.com/bitpay/bitcore-mnemonic)
 
-See [the main bitcore repo](https://github.com/bitpay/bitcore) for more information.
+## Build
+Below we will describe the different steps to clone and broserify the repository to your own version of of `bitcore-p2p.js`. First one should clone the repository using:
+
+```sh
+git clone https://github.com/theveloped/bitcore-p2p.git
+```
+
+One can now cd into the newly created repository and install the different node dependencies that are required. You may need sudo privelidges to install the dependencies.
+
+```sh
+cd bitcore-p2p
+npm install bitcore-lib
+npm install bloom-filter
+npm install socks5-client
+npm install buffers
+```
+Now all the different dependencies are installed we install and use `browserify` to output our `bitcore-p2p.js` file in the root directory. Adding this file to your HTML will make the global `bitcore.P2P` class available. Notice one will need `bitcor-lib.js` for the other bitcore classes.
+
+```sh
+npm install -g browserify
+browserify index.js -s bitcore.P2P > bitcore-p2p.js
+```
 
 ## Getting Started
 
