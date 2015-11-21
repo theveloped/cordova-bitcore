@@ -20,8 +20,9 @@ One can now cd into the newly created repository and install the different node 
 ```sh
 cd cordova-bitcore
 npm install bitcore-lib
+npm install bitcore-mnemonic
 npm install bloom-filter
-npm install socks5-client
+npm install chrome-net
 npm install buffers
 ```
 Now all the different dependencies are installed we install and use `browserify` to output our `cordova-bitcore.js` file in the root directory. Adding this file to your HTML will make the global `bitcore` class available.
