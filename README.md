@@ -4,31 +4,31 @@ Bitcore P2P
 This fork of `bitcore-p2p` is build to be browserfiable and usable in cordova mobile applications. The changes allow for the replacement of node's `Net` with the cordova plugins: `cordova-plugin-chrome-apps-sockets-tcp` and `cordova-plugin-chrome-apps-sockets-tcpserver`.
 
 For more information check out the main repos:
-[bitcore-lib](https://github.com/bitpay/bitcore-lib)
-[bitcore-p2p](https://github.com/bitpay/bitcore-p2p)
+[bitcore-lib](https://github.com/bitpay/bitcore-lib),
+[bitcore-p2p](https://github.com/bitpay/bitcore-p2p),
 [bitcore-mnemonic](https://github.com/bitpay/bitcore-mnemonic)
 
 ## Build
-Below we will describe the different steps to clone and broserify the repository to your own version of of `bitcore-p2p.js`. First one should clone the repository using:
+Below we will describe the different steps to clone and broserify the repository to your own version of of `cordova-bitcore.js`. First one should clone the repository using:
 
 ```sh
-git clone https://github.com/theveloped/bitcore-p2p.git
+git clone https://github.com/theveloped/cordova-bitcore.git
 ```
 
 One can now cd into the newly created repository and install the different node dependencies that are required. You may need sudo privelidges to install the dependencies.
 
 ```sh
-cd bitcore-p2p
+cd cordova-bitcore
 npm install bitcore-lib
 npm install bloom-filter
 npm install socks5-client
 npm install buffers
 ```
-Now all the different dependencies are installed we install and use `browserify` to output our `bitcore-p2p.js` file in the root directory. Adding this file to your HTML will make the global `bitcore.P2P` class available. Notice one will need `bitcor-lib.js` for the other bitcore classes.
+Now all the different dependencies are installed we install and use `browserify` to output our `cordova-bitcore.js` file in the root directory. Adding this file to your HTML will make the global `bitcore` class available.
 
 ```sh
 npm install -g browserify
-browserify index.js -s bitcore.P2P > bitcore-p2p.js
+browserify index.js -s bitcore > cordova-bitcore.js
 ```
 
 ## Getting Started
