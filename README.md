@@ -1,4 +1,4 @@
-Bitcore P2P
+cordova-bitcore
 =======
 
 This fork of `bitcore-p2p` is build to be browserfiable and usable in cordova mobile applications. The changes allow for the replacement of node's `Net` with the cordova plugins: `cordova-plugin-chrome-apps-sockets-tcp` and `cordova-plugin-chrome-apps-sockets-tcpserver`.
