@@ -34,15 +34,15 @@ browserify index.js -s bitcore > cordova-bitcore.js
 
 ## Getting Started
 
+Add the `cordova-bitcore.js` file that was build above to your cordova/ionic `www/js` folder and include it into your app by including the following line to your html header. This will make the global `bitcore` class available to you.
+
 ```sh
-npm install bitcore-p2p
+<script src="js/cordova-bitcore.js"></script>
 ```
-In order to connect to the Bitcoin network, you'll need to know the IP address of at least one node of the network, or use [Pool](/docs/pool.md) to discover peers using a DNS seed.
+In order to connect to the Bitcoin network, you'll need to know the IP address of at least one node of the network. One can find some of teh active peers using [a DNS lookup of seed.bitcoin.sipa.be](http://network-tools.com/nslook/Default.asp?domain=seed.bitcoin.sipa.be&type=1&server=67.222.132.213&class=1&port=53&timeout=5000&go.x=15&go.y=14).
 
 ```javascript
-var Peer = require('bitcore-p2p').Peer;
-
-var peer = new Peer({host: '127.0.0.1'});
+var peer = new bitcore.P2P.Peer({host: '127.0.0.1'});
 
 peer.on('ready', function() {
   // peer info
@@ -67,10 +67,6 @@ peer.on('tx', function(message) {
 ```
 
 Take a look at the [bitcore guide](http://bitcore.io/guide/peer.html) on the usage of the `Peer` class.
-
-## Contributing
-
-See [CONTRIBUTING.md](https://github.com/bitpay/bitcore/blob/master/CONTRIBUTING.md) on the main bitcore repo for information about how to contribute.
 
 ## License
 
