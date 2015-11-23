@@ -1,6 +1,8 @@
 cordova-bitcore
 =======
 
+### This repo is still under heavy development and not yet ready for implementation
+
 This fork of `bitcore-p2p` is build to be browserfiable and usable in cordova mobile applications. The changes allow for the replacement of node's `Net` with the cordova plugins: `cordova-plugin-chrome-apps-sockets-tcp` and `cordova-plugin-chrome-apps-sockets-tcpserver`.
 
 For more information check out the main repos:
