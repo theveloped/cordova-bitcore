@@ -49,10 +49,10 @@ BloomFilter.prototype.toBuffer = function toBuffer() {
 module.exports = BloomFilter;
 
 },{"bitcore-lib":34,"bloom-filter":125}],3:[function(require,module,exports){
+(function (Buffer){
 'use strict';
 
 var Buffers = require('buffers');
-var Buffer = require('buffer')
 
 Buffers.prototype.skip = function(i) {
   if (i === 0) {
@@ -74,6 +74,7 @@ Buffers.prototype.skip = function(i) {
 module.exports = Buffers;
 
 
+}).call(this,require("buffer").Buffer)
 },{"buffer":135,"buffers":127}],4:[function(require,module,exports){
 /**
  * @namespace P2P
@@ -1774,6 +1775,8 @@ Peer.prototype._addSocketEventHandlers = function() {
   this.socket.on('end', self.disconnect.bind(this));
 
   this.socket.on('data', function(data) {
+    console.log('INFO: data received from socket.');
+    
     self.dataBuffer.push(data);
 
     if (self.dataBuffer.length > Peer.MAX_RECEIVE_BUFFER) {
@@ -1808,7 +1811,7 @@ Peer.prototype.disconnect = function() {
  */
 Peer.prototype.sendMessage = function(message) {
   this.socket.write(message.toBuffer(), function() {
-    console.log('INFO: Message is fully writen out by socket.')
+    console.log('INFO: Message is fully written out by socket.')
   });
 };
 
