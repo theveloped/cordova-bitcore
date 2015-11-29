@@ -41,6 +41,9 @@ Add the `cordova-bitcore.js` file that was build above to your cordova/ionic `ww
 ```sh
 <script src="js/cordova-bitcore.js"></script>
 ```
+
+### Peer
+
 In order to connect to the Bitcoin network, you'll need to know the IP address of at least one node of the network. One can find some of teh active peers using [a DNS lookup of seed.bitcoin.sipa.be](http://network-tools.com/nslook/Default.asp?domain=seed.bitcoin.sipa.be&type=1&server=67.222.132.213&class=1&port=53&timeout=5000&go.x=15&go.y=14).
 
 ```javascript
@@ -73,7 +76,43 @@ peer.on('tx', function(message) {
 });
 ```
 
-Take a look at the [bitcore guide](http://bitcore.io/guide/peer.html) on the usage of the `Peer` class.
+Take a look at the [bitcore guide](https://bitcore.io/api/p2p/peer) on the usage of the `Peer` class.
+
+### Pool
+
+One can also connect to several peers using the `pool` module. This is a collection of peers and can be initiated below using a set of long standing trusted peers to start with.
+
+```javascript
+var pool = new bitcore.P2P.Pool({
+  network: bitcore.Networks.livenet,  // the network object
+  dnsSeed: false,                     // allow descovering peers from seed - NOT YET IMPLEMENTED ON CORDOVA
+  listenAddr: true,                   // allow connection of new advertized peers
+  maxSize: 32,                        // max number of connected peers
+  addrs: [                            // initial trusted peers
+    { ip: { v4: '212.47.228.216' } },
+    { ip: { v4: '66.228.49.201' } },
+    { ip: { v4: '137.116.225.142' } },
+    { ip: { v4: '85.214.251.25' } }
+  ]
+});
+
+pool.connect();
+```
+
+One can now handle the messages of all underlying peers as can be seen in the snippet below. The messages have the `peer` prefix connected to it. This means `inv` becomes `peerinv`.
+
+```javascript
+pool.on('peerinv', function(peer, message) {
+  // message.inventory[]
+});
+
+pool.on('peertx', function(peer, message) {
+  // message.transaction
+});
+```
+
+Take a look at the [bitcore guide](https://bitcore.io/api/p2p/pool) on the usage of the `Pool` class.
+
 
 ## License
 
