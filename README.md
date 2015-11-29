@@ -44,13 +44,18 @@ Add the `cordova-bitcore.js` file that was build above to your cordova/ionic `ww
 In order to connect to the Bitcoin network, you'll need to know the IP address of at least one node of the network. One can find some of teh active peers using [a DNS lookup of seed.bitcoin.sipa.be](http://network-tools.com/nslook/Default.asp?domain=seed.bitcoin.sipa.be&type=1&server=67.222.132.213&class=1&port=53&timeout=5000&go.x=15&go.y=14).
 
 ```javascript
-var peer = new bitcore.P2P.Peer({host: '127.0.0.1'});
+var peer = new bitcore.P2P.Peer({host: '212.47.228.216'});
 
+peer.on('connect', function() {
+  // socket connected to peer
+  console.log('connection connected');
+});
 peer.on('ready', function() {
-  // peer info
+  // version and verack exchange complete
   console.log(peer.version, peer.subversion, peer.bestHeight);
 });
 peer.on('disconnect', function() {
+  // socket closed
   console.log('connection closed');
 });
 peer.connect();
